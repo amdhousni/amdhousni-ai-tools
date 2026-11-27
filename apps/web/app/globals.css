@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — the same system as amdhousni.com.
+
+   Contrast rules baked in:
+   - Body copy on dark is #C4C4CC or lighter (>= 7:1 on #09090B).
+   - Orange is a signal colour: accent text and borders, or #09090B ink on a
+     filled accent button (6.3:1). Never white body text on raw orange.
+   --------------------------------------------------------------------------- */
+@theme {
+  --color-canvas: #09090b;
+  --color-canvas-deep: #0e0e11;
+  --color-surface: #141418;
+  --color-surface-2: #18181d;
+  --color-ink: #fafafa;
+  --color-body: #c4c4cc;
+  --color-muted: #a1a1aa;
+  --color-line: rgba(255, 255, 255, 0.09);
+  --color-line-strong: rgba(255, 255, 255, 0.18);
+  --color-accent: #ff5a1f;
+  --color-accent-bright: #f97316;
+  --color-paper: #f4f4f5;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #09090b;
+    color: #fafafa;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid #ff5a1f;
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: #ff5a1f;
+    color: #09090b;
+  }
+
+  ::placeholder {
+    color: #a1a1aa;
+  }
+}
+
+.shell {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 40px);
+}
+
+.hairline-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ff5a1f;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.7rem 1.15rem;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease,
+    transform 160ms ease;
+  cursor: pointer;
+}
+
+.btn-signal {
+  background: #ff5a1f;
+  color: #09090b;
+}
+
+.btn-signal:hover {
+  background: #f97316;
+}
+
+.btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fafafa;
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  background: #141418;
+}
+
+.field {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #0b0b0e;
+  padding: 0.75rem 0.85rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #fafafa;
+  outline: none;
+  transition: border-color 140ms ease;
+}
+
+.field:focus {
+  border-color: rgba(255, 90, 31, 0.6);
+}
+
+.field-mono {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.15rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: #d4d4d8;
+}
+
+.scroll-x {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
